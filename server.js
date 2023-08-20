@@ -65,7 +65,7 @@ const ffmpegCommand = [
     'ffmpeg',
     '-i', 'pipe:0',  // Audio input via pipe
     // '-i', 'pipe:0',  // Video input via pipe
-    '-c:a', 'aac',
+    // '-c:a', 'aac',
     '-c:v', 'libx264',
     // '-b:a', '128k',
     // '-preset', 'ultrafast',
@@ -111,10 +111,11 @@ async function init(){
             const mimeType = 'video/x-matroska;codecs=avc1,opus';
           
             // var blob = new Blob([message], { type: mimeType });
-            const buffer=new Uint8Array(message)
-            console.log('Received message:', buffer);
-            readableStream.push(buffer);
-            // ffmpegProcess.stdin.write(buffer);
+            const dataObject =new Buffer.from(message)
+    
+            console.log('Received message:', dataObject);
+            readableStream.push(dataObject);
+            // ffmpegProcess.stdin.write(dataObject);
         });
        
         });
